@@ -1,0 +1,70 @@
+//
+//  User.h
+//  PSAPI
+//
+//  Created by Kolatat Thangkasemvathana on 17/9/14.
+//  Copyright (c) 2014 ISB Software Development Club. All rights reserved.
+//
+
+@class PSCore;
+
+/*!
+ * @abstract Represents an authenticated user A.K.A. a student.
+ */
+@interface PSUser : NSObject
+
+/*!
+ * @brief The PSCore in which the student belongs to.
+ */
+@property (readonly) PSCore* core;
+
+/*!
+ * @brief The raw HTML representation obtained from the server about this student. Naughty naughty.
+ */
+@property (readonly) NSString* homeContents;
+
+/*!
+ * @brief An array of courses taken by this student.
+ */
+@property (readonly) NSArray* courses;
+
+/*!
+ * @discussion Initializes the student.
+ * @param core The PSCore in which the student belongs.
+ * @return The student PSUser object.
+ */
+-(id)init:(PSCore*)core;
+-(id)initInDemo:(PSCore*)core;
+/*!
+ * @discussion Fetches the student's transcript, Ohohohooo dammn.
+ * @return The student's transcript.
+ */
+-(NSString*) fetchTranscript;
+/*!
+ *@discussion Fetches student's schedule
+ *@return An html file containing the student's schedule
+ */
+-(NSString*) fetchSchedule;
+/*!
+ * @discussion Gets the school name.
+ * @return The name of the school.
+ */
+-(NSString*) getSchoolName;
+
+/*!
+ * @discussion Gets the student's full name (or username depending on school's implementation I think).
+ * @return The name.
+ */
+-(NSString*) getUserName;
+
+/*!
+ * @discussion Gets the student's GPA.
+ * @return The GPA.
+ */
+-(NSNumber*) getGPA;
+
+/*!
+ * @discussion Refreshes the student's data.
+ */
+-(void) refresh;
+@end

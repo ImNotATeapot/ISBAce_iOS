@@ -1,0 +1,579 @@
+
+<!--Redirect if user has no Javascript-->
+<noscript>
+	<META HTTP-EQUIV="Refresh" CONTENT="0;URL=error.html">
+	</noscript>
+
+</noscript>
+
+<head>
+	<title>Cafeteria</title>
+	<link rel="icon" type="image/x-icon" href="resources/icons/favicon.ico">
+	<!--Load Css files-->
+	<link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+	<script src="jquery.min2.js"></script>
+    <script src="index.js"></script>
+	<!--Temp Css Loader-->
+	<style>
+    /*Mobile Styles*/
+    @media screen and (max-width: 700px) {
+        table td {
+            font-size:12px;
+        }
+        
+        .disc{
+            display:none;
+        }
+
+    }
+    @media screen and (max-height: 600px) {
+        table{
+            padding-top: 10vh;
+        }
+        table td img{
+            width:10px;
+        }
+        body{
+            min-height:170vh;
+        }
+    }
+    @media screen and (max-height: 400px) {
+        body{
+            min-height:270vh;
+        }
+    }
+
+	/* Main Text Styles
+	----------------------------------------*/
+	.titlelarge{
+		position: absolute;
+		font-size: 8vh;
+		font-family:'Kaushan Script';
+		font-style: italic;
+		color: #fff;
+		left:0;
+		right:0;
+		top:1vh;
+		padding:30px 0 0 0;
+	}
+
+	.intro p{
+		color: #fff;
+		padding:40px 0 0 0;
+	}
+
+	body{
+		font-family: helvetica;
+		color: #333;
+		width:100vw;
+        height:120vh;
+		position: relative;
+		-webkit-text-size-adjust: auto;
+        font-size:2vh;
+	}
+
+	/* Section Styling
+	* --------------------------------------- */
+	.section{
+		text-align:center;
+		position: relative;
+	}
+
+
+	/* Page 1 Navigation
+	* --------------------------------------- */
+	nav ul li{
+		display:inline-block;
+		font-size:2em;
+		padding-left:2vw;
+		padding-right:2vw;
+		padding-top: 5vh;
+	}
+
+	a{
+		color:black;
+	}
+	.slide{
+		padding-top:5vh;
+		width:100vw;
+		position: relative;
+
+	}
+	/* Individual Dates
+	* --------------------------------------- */
+	#slide1{
+		background-color:#7EE081;
+
+	}
+	#slide2{
+		background-color: #C6D8FF;
+
+	}
+	#slide3{
+		background-color: #8789C0;
+	}
+	#slide4{
+		background-color: #DDD8C4;
+	}
+	#slide5{
+		background-color: #FFA630;
+	}
+
+	/* Individual Dates
+	* --------------------------------------- */
+	table{
+		margin: 0 auto;
+		width:80vw;
+		margin-top: 7vh;
+	}
+
+	table td{
+		width: 11vw;
+		height:auto;
+		position: relative;
+		margin: 0;
+	}
+
+	table tr{
+		text-align: center;
+        font-size: 3vh;
+	}
+
+	table tr:first-child td{
+		border-style: none;
+		border-bottom: 1px solid black;
+		margin-bottom: 2vh;
+
+
+	}
+	table tr{
+		margin-bottom: 10vh;
+	}
+
+	table tr td img{
+		width:11vw;
+		object-fit: cover;
+		line-height: 0;
+		margin: 0.5vw;
+		border-radius: 1vw;
+	}
+	.fp-controlArrow{
+		position: absolute;
+        top:50vh;
+	}
+
+
+	/*
+	*/
+	.menubar {
+		background-color: #484A47;
+		left: -10vw;
+		position: fixed;
+		height:100%;
+		width:10vw;
+		float:left;
+
+	}
+
+
+	.menubar ul {
+		list-style: none;
+		position: absolute;
+		margin: auto;
+		padding-top: 3vh;
+
+	}
+	.menubar li :first-child{
+		padding-top: -5vh;
+	}
+
+	.menubar li {
+		display: inline-block;
+		padding-left: 3vw;
+		padding-bottom:3vh;
+
+
+	}
+
+	.menubar a {
+		color: #ECEBF0;
+		font-size: 15px;
+
+	}
+
+	.button-close {
+		font-style: oblique;
+	}
+
+	.menuclicky {
+		z-index:9999999;
+		position: absolute;
+		top:3vh;
+		left:1vw;
+		width: 100%w;
+		color: white;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+		transition: all 0.2s ease-in;
+		cursor:pointer;
+	}
+	.disc {
+		z-index:9999999;
+		position: absolute;
+		top:3vh;
+		right:1vw;
+		color: white;
+		text-align: center;
+		text-decoration: none;
+		/*text-transform: uppercase;*/
+	}
+
+	/*Modal Stuff
+	-----------------------------------*/
+	#overlay {
+		position:fixed;
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+		background:#000;
+		opacity:0.5;
+		filter:alpha(opacity=50);
+		z-index: 100;
+	}
+
+	#modal {
+		position:absolute;
+		/*background:url(tint20.png) 0 0 repeat;*/
+		background:rgba(0,0,0,0.2);
+		border-radius:14px;
+		padding:8px;
+		z-index: 101;
+		max-width: 50vw;
+		top:10vh;
+	}
+
+	#content {
+		border-radius:8px;
+		background:#fff;
+		padding:1vw;
+	}
+
+
+	#modal img {
+		border-radius: 8px;
+	}
+
+	#close {
+		position:absolute;
+		background:url("resources/icons/close.png") 0 0 no-repeat;
+		width:24px;
+		height:27px;
+		display:block;
+		text-indent:-9999px;
+		top:-7px;
+		right:-7px;
+	}
+	img.modal-img{
+		max-width: 100%;
+		max-height: 70vh;
+	}
+	</style>
+
+
+	<!--Javascript/JQuery-->
+	<!--Load the plugin-->
+	<!--Fullpage.js-->
+	<script type="text/javascript" src="jquery.fullPage.js"></script>
+	<!--Modal Stuff-->
+
+	<!--Custom JS for later-->
+	<script src="js.js"></script>
+	<!--Settings for scroll plugin-->
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('#fullpage').fullpage({
+			anchors: ['firstPage', 'secondPage', '3rdPage'],
+			sectionsColor: ['#4A6FB1', '#939FAA', 'red'],
+			scrollingSpeed: 400,
+			autoScrolling:false,
+			scrollBar: true,
+			scrollOverflow: true
+		});
+	});
+	</script>
+	<script>
+	var modal = (function(){
+		var
+		method = {},
+		$overlay,
+		$modal,
+		$content,
+		$close;
+
+		// Center the modal in the viewport
+		method.center = function () {
+			var top, left;
+
+/*
+			top = Math.max($(window).height() - $modal.outerHeight(), 0) / 2;
+*/
+			left = Math.max($(window).width() - $modal.outerWidth(), 0) / 2;
+
+			$modal.css({
+				top:top + $(window).scrollTop(),
+				left:left + $(window).scrollLeft()
+			});
+		};
+
+		// Open the modal
+		method.open = function (settings) {
+			$content.empty().append(settings.content);
+
+			$modal.css({
+				width: settings.width || 'auto',
+				height: settings.height || 'auto'
+			});
+
+			method.center();
+			$(window).bind('resize.modal', method.center);
+			$modal.show();
+			$overlay.show();
+		};
+
+		// Close the modal
+		method.close = function () {
+			$modal.hide();
+			$overlay.hide();
+			$content.empty();
+			$(window).unbind('resize.modal');
+
+		};
+
+		// Generate the HTML and add it to the document
+		$overlay = $('<div id="overlay"></div>');
+		$modal = $('<div id="modal"></div>');
+		$content = $('<div id="content"></div>');
+		$close = $('<a id="close" href="#">close</a>');
+
+		$modal.hide();
+		$overlay.hide();
+		$modal.append($content, $close);
+
+		$(document).ready(function(){
+			$('body').append($overlay, $modal);
+		});
+
+		$overlay.click(function(e){
+			e.preventDefault();
+			method.close();
+		});
+		$close.click(function(e){
+			e.preventDefault();
+			method.close();
+		});
+
+		return method;
+	}());
+
+	// Wait until the DOM has loaded before querying the document
+	$(document).ready(function(){
+		/*$.get('ajax.html', function(data){
+		modal.open({content: data});
+	});*/
+	$('a.imgholder').click(function(event){
+		var id = event.target.id;
+		var allDescriptions = {
+			dummy:'NA',week1mondayasian1:'Garlic Pepper Pork<br />GF,EF,DF',week1mondaycontinental1:'',week2mondayasian1:'Stir Fry Hot Basil Chili Chicken<br />F,DF',week2mondaycontinental1:'Moroccan Baked Chicken<br />GF,EF,DF',week4wednesdaynoodle2:'Hue',week1mondaynoodle1:'',week1mondaylive4:'Pasta?',week2mondayasian2:'Thai Style Fried Eggs<br />V,GF,DF',week2mondayasian3:'Morning Glorious<br />OS,EF,DF',week2mondayasian4:'Phad See Ew<br />OS,DF',week2mondaycontinental2:'Eastern Chickpea, Pumpkin & Rice Stew<br />V,GF,EF,DF',week2mondaycontinental3:'Potatoes Au Gratin<br />V,GF',week2mondaycontinental4:'Roast Vegetables<br />V,GF,EF,DF',week2mondaynoodle1:'Khao Tom<br />w Chicken, Pork and or Tofu<br />GF,EF,DF',week2mondayjapanese1:'Japanese Fried Chicken<br />EF,DF',week2mondayveggies1:'Bean & Cheese Enchilada<br />V,EF',week2mondayveggies2:'Asian Chicken or Asian Tofu Salads<br />V,EF,DF',week2mondayjapanese2:'Every day Sushi.<br />Chicken, Crab, Egg or Cucumber.',week2mondaylive1:'Build Your Own Pasta Bar.  Choose from Milk Carbonara, Tomato Basil, Ratatouille or Pesto Sauces.',week2mondaylive2:'Build Your Own Sandwich Bar.',week2tuesdayasian1:'Green Curry Chicken w Rice Noodles<br />GF,EF,DF',week2tuesdayasian2:'Stir Fry Ginger Dory<br />F,GF,EF,DF',week2tuesdaycontinental1:'Beef Chili con Carne<br />GF,EF,DF',week2tuesdaynoodle1:'Khao Soi<br />F,DF',week2tuesdayjapanese1:'Pork Katsu Kare<br />EF,DF',week2tuesdayjapanese2:'Every Day Sushi<br />California Rolls and Salmon Sushi',week2tuesdayveggies1:'Veg Fried Spring Rolls<br />w Fried Rice and Garden Salad<br />V,GF,EF,DF <br />(Fried Rice has egg)',week2tuesdayveggies2:'Chicken and Veg Tostadas every other day',week2tuesdaylive1:'Build Your Own Pasta Bar<br />Choice of 4 different sauces',week2tuesdaycontinental2:'Pesto Spinach Dory<br />F,GF,EF,DF',week2tuesdaylive2:'Every Day Sandwich Bar',week2tuesdaynoodle2:'Daily Potatoes and Vegetables of the Day',week2wednesdaycontinental1:'Roast Pork Loin in Mushroom Sauce<br />EF,DF',week2wednesdaynoodle1:'Red Pork Noodles<br />GF,EF,DF -Options',week2wednesdayjapanese1:'Pork Gyoza<br />EF,DF',week2wednesdayjapanese2:'Every day Sushi Rolls<br />Choose from Cucumber, Chicken, Tuna and Crab',week2wednesdayveggies1:'Mighty Minestrone Soup<br />V,GF,EF,DF',week2wednesdayveggies2:'Specialty Salads Change Daily',week2wednesdaylive1:'World Wednesday<br />Special Menu Surprise',week2wednesdayasian1:'Lime Chili Dory<br />F,GF,EF,DF',week2wednesdayasian2:'Red Curry Chicken<br />F,OS,EF',week2wednesdayasian3:'Tom Kha Mushroom<br />F,GF,EF',week2wednesdaycontinental2:'Roast Chicken in Onion Sauce<br />GF,EF,DF',week2wednesdaycontinental3:'Veg and Potato of the Day',week2thursdayasian1:'Gai Yang<br />OS,EF,DF',week2thursdayasian2:'Som Tum<br />F,GF,EF,DF',week2thursdaycontinental1:'Spontaneous New Fish Dish<br />Check it out!',week2thursdaycontinental2:'Chicken Schnitzel<br />DF',week2thursdaynoodle1:'Lard Na Pork Noodles<br />GF,EF,DF',week2thursdayjapanese1:'Chicken Yakisoba<br />DF',week2thursdayjapanese2:'Every day Sushi',week2thursdayveggies1:'Falafel Pita<br />V,EF,DF<br />w Option of Homemade Hummus',week2thursdayveggies2:'Everyday Build Your Own Salad Bar',week2thursdaylive1:'Pasta Bar<br />Choose from 4 different Sauces',week2fridaylive1:'BBQ Fridays<br />Beef, Chicken and Falafel Burgers',week2fridayveggies1:'Yellow Curry Tofu w Jasberry Rice<br />V,GF,EF,DF',week2fridayveggies2:'Salad Bar',week2fridayjapanese2:'Assorted Sushi Rolls',week2fridaynoodle1:'Roast Chicken Noodles<br />OS,DF<br />Rice Noodle Options',week2fridaycontinental1:'Fish n Chips<br />DF',week2fridaycontinental2:'Chicken Masala<br />GF,EF',week2mondaynoodle2:'Vegetables of the Day',week2wednesdaynoodle2:'Vegetables of the Day',week2thursdaynoodle2:'Vegetables of the Day to go with any main dish',week2fridayasian1:'Black Pepper Dory Fish<br />OS,EF,DF',week2fridayasian2:'Flat Rice Noodle Saute w Chicken and Egg<br />OS,DF',week2fridayjapanese1:'Chicken Teriyaki<br />GF,EF,DF',week2fridaynoodle2:'Garden Medley Vegetables',week2fridaylive2:'Everyday Sandwich Bar w option of Homemade Bagels and Baguette<br />',week2fridayasian3:'Pumpkin & Egg Saute<br />V,GF,DF',week3mondayasian1:'Water Chestnut Chicken<br />EF,DF',week3mondayasian2:'Veg Rice Noodle Roll<br />V,GF,DF',week3mondayasian3:'Veg Green Curry<br />V,GF,EF,DF',week3mondaycontinental1:'Mexican Grilled Chicken<br />GF,EF,DF',week3mondaycontinental3:'Roast Vegetables<br />V,GF,EF,DF',week3mondayjapanese1:'Japanese Fried Chicken<br />EF,DF',week3mondayjapanese2:'Every day Sushi Rolls<br />Choose from Cucumber, Crab, Tuna and Chicken',week3mondayveggies1:'Bean & Cheese Enchilada<br />V,EF',week3mondayveggies2:'Specialty Salads and Our Build Your Own Salad Bar',week3mondaylive1:'Pasta Bar<br />Choose from Tomato Basil, Milk Carbonara, Pesto, Ratatouille and Olive Oil Sauces.',week3mondaynoodle1:'Khao Tom<br />w Chicken, Pork or Rice<br />GF,EF,DF',week3mondaynoodle2:'Option of Jasberry Rice for All Dishes<br />High in Fiber and Easier to Digest',week3mondaycontinental2:'Veg Bean Chili<br />GF,EF,DF',week3tuesdaycontinental1:'Salsa Roast Dory<br />GF,EF,DF',week3mondaynoodle3:'',week3tuesdaynoodle1:'Khao Soi<br />F,DF',week3wednesdaynoodle1:'Red Pork Noodles<br />DF<br />GF,EF - options',week3tuesdaylive1:'Pasta Bar<br />Choose from 4 Sauces',week3thursdayasian1:'',week3thursdaycontinental1:'',week3thursdaylive2:'',week3tuesdayasian1:'Pork in Oyster Sauce<br />OS,EF,DF w<br />Organic Jasberry Rice<br />+5 baht',week3tuesdayasian2:'Sweet n Sour Fish<br />F,EF,DF',week3tuesdaycontinental2:'Chicken Fajita<br />EF,DF'		};
+		var img = event.target.src;
+		var description = allDescriptions[id];
+		if(!description){
+			description = "";
+		}
+		var content = "<img class='modal-img' src='"+img+"'/><br><br>"+description;
+		if(img.indexOf("editor/images/blank.png") == -1||description!=""){
+			modal.open({content: content});
+		}
+		event.preventDefault();
+	});
+	$(document).keyup(function(e) {
+		if (e.keyCode == 27){
+			modal.close();
+		}
+	});
+});
+</script>
+
+</head>
+<body>
+	<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-75355004-1', 'auto');
+		  ga('send', 'pageview');
+
+	</script>
+	<div class='menuclicky'>Menu
+	</div>
+    <div class="disc">GF=gluten free, EF=egg free, DF=dairy free, OS/ F=oyster sauce, fish ingredient, V=vegetarian
+<br>Disclaimer: menu subject to change without prior notice depending on availability<br>
+Note: Click on the photos for Allergy and Menu info</div>
+
+	<div class='menubar'>
+		<ul>
+			<li><a class='button-close'>Close</a></li>
+			<li><a href='#firstPage/slide1'>Monday</a></li>
+			<li><a href='#firstPage/slide2'>Tuesday</a></li>
+			<li><a href='#firstPage/slide3'>Wednesday</a></li>
+			<li><a href='#firstPage/slide4'>Thursday</a></li>
+			<li><a href='#firstPage/slide5'>Friday</a></li>
+
+			<li><a href='editor/'>Upload</a></li>
+		</ul>
+	</div>
+
+	<div id="fullpage">
+		<div id="nicP" style="display:none; z-index: 100000;">
+			<p>Biography <br><a href="#" rel="modal:close">Close</a> </p>
+		</div>
+
+
+		<div class="section" id="section1">
+			<div class="intro">
+				
+					<div class='slide' id='slide1' data-anchor='slide1'>
+
+					<h1 class='titlelarge'>Monday</h1>
+					<div class='menu'>
+					<table>
+					<tr>
+					<td>Asian</td>
+					<td>Continental</td>
+					<td>Noodle</td>
+					<td>Japanese</td>
+					<td>Vegetarian/ Salads</td>
+					<td>Live Station</td>
+					</tr><tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='week2mondayasian1'src='editor/images/week2mondayasian1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2mondaycontinental1'src='editor/images/week2mondaycontinental1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2mondaynoodle1'src='editor/images/week2mondaynoodle1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2mondayjapanese1'src='editor/images/week2mondayjapanese1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2mondayveggies1'src='editor/images/week2mondayveggies1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2mondaylive1'src='editor/images/week2mondaylive1.jpg'></a></td></tr>
+<tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='week2mondayasian2'src='editor/images/week2mondayasian2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2mondaycontinental2'src='editor/images/week2mondaycontinental2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2mondaynoodle2'src='editor/images/week2mondaynoodle2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2mondayjapanese2'src='editor/images/week2mondayjapanese2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2mondayveggies2'src='editor/images/week2mondayveggies2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2mondaylive2'src='editor/images/week2mondaylive2.jpg'></a></td></tr>
+<tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='week2mondayasian3'src='editor/images/week2mondayasian3.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2mondaycontinental3'src='editor/images/week2mondaycontinental3.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td></tr>
+<tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='week2mondayasian4'src='editor/images/week2mondayasian4.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2mondaycontinental4'src='editor/images/week2mondaycontinental4.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td></tr>
+</table>
+</div>
+</div>
+					<div class='slide' id='slide2' data-anchor='slide2'>
+
+					<h1 class='titlelarge'>Tuesday</h1>
+					<div class='menu'>
+					<table>
+					<tr>
+					<td>Asian</td>
+					<td>Continental</td>
+					<td>Noodle</td>
+					<td>Japanese</td>
+					<td>Vegetarian/ Salads</td>
+					<td>Live Station</td>
+					</tr><tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='week2tuesdayasian1'src='editor/images/week2tuesdayasian1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2tuesdaycontinental1'src='editor/images/week2tuesdaycontinental1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2tuesdaynoodle1'src='editor/images/week2tuesdaynoodle1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2tuesdayjapanese1'src='editor/images/week2tuesdayjapanese1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2tuesdayveggies1'src='editor/images/week2tuesdayveggies1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2tuesdaylive1'src='editor/images/week2tuesdaylive1.jpg'></a></td></tr>
+<tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='week2tuesdayasian2'src='editor/images/week2tuesdayasian2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2tuesdaycontinental2'src='editor/images/week2tuesdaycontinental2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2tuesdaynoodle2'src='editor/images/week2tuesdaynoodle2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2tuesdayjapanese2'src='editor/images/week2tuesdayjapanese2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2tuesdayveggies2'src='editor/images/week2tuesdayveggies2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2tuesdaylive2'src='editor/images/week2tuesdaylive2.jpg'></a></td></tr>
+<tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td></tr>
+<tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td></tr>
+</table>
+</div>
+</div>
+					<div class='slide' id='slide3' data-anchor='slide3'>
+
+					<h1 class='titlelarge'>Wednesday</h1>
+					<div class='menu'>
+					<table>
+					<tr>
+					<td>Asian</td>
+					<td>Continental</td>
+					<td>Noodle</td>
+					<td>Japanese</td>
+					<td>Vegetarian/ Salads</td>
+					<td>Live Station</td>
+					</tr><tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='week2wednesdayasian1'src='editor/images/week2wednesdayasian1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2wednesdaycontinental1'src='editor/images/week2wednesdaycontinental1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2wednesdaynoodle1'src='editor/images/week2wednesdaynoodle1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2wednesdayjapanese1'src='editor/images/week2wednesdayjapanese1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2wednesdayveggies1'src='editor/images/week2wednesdayveggies1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2wednesdaylive1'src='editor/images/week2wednesdaylive1.jpg'></a></td></tr>
+<tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='week2wednesdayasian2'src='editor/images/week2wednesdayasian2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2wednesdaycontinental2'src='editor/images/week2wednesdaycontinental2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2wednesdaynoodle2'src='editor/images/week2wednesdaynoodle2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2wednesdayjapanese2'src='editor/images/week2wednesdayjapanese2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2wednesdayveggies2'src='editor/images/week2wednesdayveggies2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td></tr>
+<tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='week2wednesdayasian3'src='editor/images/week2wednesdayasian3.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2wednesdaycontinental3'src='editor/images/week2wednesdaycontinental3.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td></tr>
+<tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td></tr>
+</table>
+</div>
+</div>
+					<div class='slide' id='slide4' data-anchor='slide4'>
+
+					<h1 class='titlelarge'>Thursday</h1>
+					<div class='menu'>
+					<table>
+					<tr>
+					<td>Asian</td>
+					<td>Continental</td>
+					<td>Noodle</td>
+					<td>Japanese</td>
+					<td>Vegetarian/ Salads</td>
+					<td>Live Station</td>
+					</tr><tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='week2thursdayasian1'src='editor/images/week2thursdayasian1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2thursdaycontinental1'src='editor/images/week2thursdaycontinental1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2thursdaynoodle1'src='editor/images/week2thursdaynoodle1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2thursdayjapanese1'src='editor/images/week2thursdayjapanese1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2thursdayveggies1'src='editor/images/week2thursdayveggies1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2thursdaylive1'src='editor/images/week2thursdaylive1.jpg'></a></td></tr>
+<tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='week2thursdayasian2'src='editor/images/week2thursdayasian2.jpeg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2thursdaycontinental2'src='editor/images/week2thursdaycontinental2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2thursdaynoodle2'src='editor/images/week2thursdaynoodle2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2thursdayjapanese2'src='editor/images/week2thursdayjapanese2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2thursdayveggies2'src='editor/images/week2thursdayveggies2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td></tr>
+<tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td></tr>
+<tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td></tr>
+</table>
+</div>
+</div>
+					<div class='slide' id='slide5' data-anchor='slide5'>
+
+					<h1 class='titlelarge'>Friday</h1>
+					<div class='menu'>
+					<table>
+					<tr>
+					<td>Asian</td>
+					<td>Continental</td>
+					<td>Noodle</td>
+					<td>Japanese</td>
+					<td>Vegetarian/ Salads</td>
+					<td>Live Station</td>
+					</tr><tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='week2fridayasian1'src='editor/images/week2fridayasian1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2fridaycontinental1'src='editor/images/week2fridaycontinental1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2fridaynoodle1'src='editor/images/week2fridaynoodle1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2fridayjapanese1'src='editor/images/week2fridayjapanese1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2fridayveggies1'src='editor/images/week2fridayveggies1.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2fridaylive1'src='editor/images/week2fridaylive1.jpg'></a></td></tr>
+<tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='week2fridayasian2'src='editor/images/week2fridayasian2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2fridaycontinental2'src='editor/images/week2fridaycontinental2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2fridaynoodle2'src='editor/images/week2fridaynoodle2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2fridayjapanese2'src='editor/images/week2fridayjapanese2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2fridayveggies2'src='editor/images/week2fridayveggies2.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='week2fridaylive2'src='editor/images/week2fridaylive2.jpg'></a></td></tr>
+<tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='week2fridayasian3'src='editor/images/week2fridayasian3.jpg'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td></tr>
+<tr>
+<td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td><td class='tdhover'><a class='imgholder' href='#'><img id='blank'src='editor/images/blank.png'></a></td></tr>
+</table>
+</div>
+</div>			</div>
+		</div>
+
+	</div>
+</body>
+<script type="text/javascript">
+var main = function (){
+	$('.section').css("width", "100px");
+
+	$('.section').css("width", "100vw");
+	$('img').height($('img').width());
+};
+$( document ).ready(main);
+
+</script>
+</html>
